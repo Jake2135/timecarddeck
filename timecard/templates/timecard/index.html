@@ -1,0 +1,32 @@
+
+{% extends 'login.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Logged in as: {{ user.username }}
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+{% endif %}
+
+<title>Time Card System</title>
+<h2 style="text-align:center">Options</h2>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'timecard/style.css' %}" />
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'timecard:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Time Cards Are Available.</p>
+{% endif %}
+
+  <p><a href="{% url 'logout' %}">Logout</a></p>
+{% endblock %}

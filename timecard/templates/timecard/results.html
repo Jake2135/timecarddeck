@@ -1,0 +1,11 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'timecard/style.css' %}" />
+
+
+<h1>{{ question.question_text }}</h1>
+<h3 style="text-align:center";>Your {{ question.question_text}} Time Is: {% now "SHORT_DATETIME_FORMAT" %}</h3>
+
+<div class="buttonHolder">
+<a href="{% url 'timecard:index' %}">Return Home</a href>
+</div>
